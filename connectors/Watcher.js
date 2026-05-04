@@ -12,7 +12,7 @@ for (const [key, val] of Object.entries(process.env)) {
     }
 }
 
-const handler = async ({ name, lines }) => {
+const handler = async ({ name, lines, host }) => {
     if (!name) {
         return utilities.sendify({ available: Object.keys(watchers) });
     }
@@ -23,7 +23,9 @@ const handler = async ({ name, lines }) => {
     }
 
     const n = lines || 50;
-    const output = execSync(`tail -n ${n} "${path}"`).toString();
+    const output = host 
+    ? execSync(`ssh ${host} 'tail -n ${n} "${path}"'`).toString()
+    : execSync(`tail -n ${n} "${path}"`).toString();
     return utilities.sendify({ name, path, lines: n, output });
 };
 
@@ -32,6 +34,7 @@ module.exports = {
     handler,
     params: {
         name: z.string().optional().describe("Watcher name (e.g. 'minecraft_logs'). Leave blank to list available watchers"),
-        lines: z.number().optional().describe("Number of lines to tail, default 50")
+        lines: z.number().optional().describe("Number of lines to tail, default 50"),
+        host: z.string().optional().describe("SSH host to run on (e.g. user@hostname or a ~/.ssh/config alias). Leave blank for local machine")
     }
 };
