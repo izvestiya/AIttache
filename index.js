@@ -4,7 +4,7 @@ const { z } = require("zod");
 const fs = require("fs");
 const path = require("path");
 
-require("dotenv").config();
+require("dotenv").config({ path: `${__dirname}/.env`, quiet: true });
 
 const server = new McpServer({
   name: "aittache",
@@ -17,7 +17,7 @@ fs.readdirSync(connectorsDir)
   .filter(f => f.endsWith(".js"))
   .forEach(f => {
     const connector = require(path.join(connectorsDir, f));
-    console.log(`Loading connector ${connector.identifier}...`);
+    console.error(`Loading connector ${connector.identifier}...`);
     server.tool(connector.identifier, connector.params, connector.handler);
   });
 
