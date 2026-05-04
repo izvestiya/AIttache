@@ -1,11 +1,12 @@
 const { z } = require("zod");
-const axios = require("axios");
-require("dotenv").config();
+const utilities = require("../utilities");
+require("dotenv").config({ path: `${__dirname}/.env`, quiet: true });
 
 const pRoot = process.env.PLANKA_ROOT;
 const PEndPnts = {
     "auth": `${pRoot}/api/access-tokens`,
-    "projects": `${pRoot}/api/projects`
+    "projects": `${pRoot}/api/projects`,
+    "boards": `${pRoot}/api/boards`
 };
 
 // Check wether the token exists if not, fetch token from server
@@ -30,23 +31,37 @@ const getAccessToken = async () => {
 }
 
 // Handler for what to return
-const handler = async () => {
-    const res = await fetch(PEndPnts.projects, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${await getAccessToken()}`
-            },
-        });
-
-    const data = await res.json();
-    return data;
+const handler = async ({boardID}) => {
+    let data = {};
+    if (boardID) {
+        const res = await fetch(`${PEndPnts.boards}/${boardID}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${await getAccessToken()}`
+                },
+            });
+        data = await res.json();
+    } else {
+        const res = await fetch(PEndPnts.projects, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${await getAccessToken()}`
+                },
+            });
+        data = await res.json();
+        
+    }
+    return utilities.sendify(data);
 };
 
 module.exports = {
     identifier: "planka_get_overview",
     handler,
-    params: {}, // Params for the endpoint
+    params: {
+        boardID: z.string().optional().describe("The Planka board ID. Leave blank to get a total list of boards")
+    }, // Params for the endpoint
     getAccessToken,
     PEndPnts
 }
