@@ -24,8 +24,6 @@ const handler = async ({ action, owner, repo, path }) => {
             const fileRes = await fetch(url, { headers });
             const fileData = await fileRes.json();
             fileData.content = Buffer.from(fileData.content, "base64").toString("utf8");
-            console.error(url);
-            console.error(JSON.stringify(fileData));
             return utilities.sendify(fileData);
         default:
             url = `${base}/api/v1/repos/${owner}/${repo}`;
