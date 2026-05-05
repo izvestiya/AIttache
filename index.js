@@ -1,17 +1,13 @@
 // Modules for MCP via STDIO
 const { McpServer } = require("@modelcontextprotocol/sdk/server/mcp.js");
 const { StdioServerTransport } = require("@modelcontextprotocol/sdk/server/stdio.js");
-const { StreamableHTTPServerTransport } = require("@modelcontextprotocol/sdk/server/streamableHttp.js");
 
 // Modules for MCP over HTTP
 const express = require("express");
-const crypto = require("crypto");
 const cors = require("cors");
 
-const { z } = require("zod");
-const fs = require("fs");
-const path = require("path");
 const utilities = require("./utilities");
+const logging = require("./logging");
 
 require("dotenv").config({ path: `${__dirname}/.env`, quiet: true });
 
@@ -19,20 +15,12 @@ const mode = process.env.TRANSPORT || "stdio";
 
 
 if (mode === "stdio") {
-    const server = new McpServer({
+    let server = new McpServer({
         name: "aittache",
         version: "0.1.0",
     });
 
-    const { connectorsDir } = utilities;
-
-    fs.readdirSync(connectorsDir)
-       .filter(f => f.endsWith(".js"))
-       .forEach(f => {
-           const connector = require(path.join(connectorsDir, f));
-           console.error(`Loading connector ${connector.identifier}...`);
-           server.tool(connector.identifier, connector.params, connector.handler);
-       });
+    server = utilities.loadConnectors(server, true);
     const transport = new StdioServerTransport();
     server.connect(transport);
 } else {
@@ -41,7 +29,7 @@ if (mode === "stdio") {
     // app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(cors({ exposedHeaders: ["Mcp-Session-Id"] }));
-    
+    app = logging.load(app);
     app = routes.load(app);
 
     const port = process.env.MCP_PORT || 3000;

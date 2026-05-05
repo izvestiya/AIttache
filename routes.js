@@ -2,8 +2,6 @@ const express = require("express");
 const crypto = require("crypto");
 const OAuthServer = require("@node-oauth/express-oauth-server");
 // Modules for MCP via STDIO
-const { McpServer } = require("@modelcontextprotocol/sdk/server/mcp.js");
-const { StdioServerTransport } = require("@modelcontextprotocol/sdk/server/stdio.js");
 const { StreamableHTTPServerTransport } = require("@modelcontextprotocol/sdk/server/streamableHttp.js");
 const utilities = require("./utilities");
 
@@ -78,7 +76,7 @@ const authorize = (req, res) => {
 // Token endpoint
 const token = (req, res, next) => {
     if (req.body.grant_type === "authorization_code") {
-        const { code, redirect_uri, client_id, client_secret, code_verifier } = req.body;
+        const { code, redirect_uri, client_id, code_verifier } = req.body;
         const ac = authCodes[code];
         if (!ac || ac.expires < Date.now() || ac.clientId !== client_id || ac.redirectUri !== redirect_uri) {
             return res.status(400).json({ error: "invalid_grant" });

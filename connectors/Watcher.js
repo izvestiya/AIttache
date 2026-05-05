@@ -1,5 +1,4 @@
 const { z } = require("zod");
-const { readFileSync } = require("fs");
 const { execSync } = require("child_process");
 const utilities = require("../utilities");
 
