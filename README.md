@@ -125,6 +125,7 @@ Grant the eyes. Keep the hands.
 | `Uptime_Kuma`         | Service uptime and response times       |
 | `system_processes`    | System processes (full `ps aux` dump)   |
 | `journalctl_check`    | JournalCTL-checker. Checks system logs  |
+| `FreshRSS`            | FreshRSS feed                           |
 
 ---
 
