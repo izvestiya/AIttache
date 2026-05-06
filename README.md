@@ -124,6 +124,7 @@ Grant the eyes. Keep the hands.
 | `speedtest`           | Run a live speedtest                    |
 | `Uptime_Kuma`         | Service uptime and response times       |
 | `system_processes`    | System processes (full `ps aux` dump)   |
+| `journalctl_check`    | JournalCTL-checker. Checks system logs  |
 
 ---
 
