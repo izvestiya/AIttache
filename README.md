@@ -123,6 +123,7 @@ Grant the eyes. Keep the hands.
 | `tailscale`           | Network status and peer info            |
 | `speedtest`           | Run a live speedtest                    |
 | `Uptime_Kuma`         | Service uptime and response times       |
+| `system_processes`    | System processes (full `ps aux` dump)   |
 
 ---
 
