@@ -112,21 +112,23 @@ Grant the eyes. Keep the hands.
 
 ## Included connectors
 
-| **Connector**         | **Description**                                                                                                  |
-|-----------------------|------------------------------------------------------------------------------------------------------------------|
-| `system_monitor`      | CPU, memory, disk, network, Docker, GPU                                                                          |
-| `terminal_view`       | Live tmux pane capture                                                                                           |
-| `file_watcher`        | Tail log/text files                                                                                              |
-| `gitea`               | Browse repos, trees, and files, and file issues (Note: This is disabled by default and can be enabled in `.env`) |
-| `planka_get_overview` | Kanban board overview                                                                                            |
-| `mealie`              | Recipe and meal plan data                                                                                        |
-| `tailscale`           | Network status and peer info                                                                                     |
-| `speedtest`           | Run a live speedtest                                                                                             |
-| `Uptime_Kuma`         | Service uptime and response times                                                                                |
-| `system_processes`    | System processes (full `ps aux` dump)                                                                            |
-| `journalctl_check`    | JournalCTL-checker. Checks system logs                                                                           |
-| `FreshRSS`            | FreshRSS feed                                                                                                    |
-| `OpenFoodfacts`       | Fetch food-related data                                                                                          |
+| **Connector**         | **Description**                                                                                                       |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------|
+| `system_monitor`      | CPU, memory, disk, network, Docker, GPU                                                                               |
+| `terminal_view`       | Live tmux pane capture                                                                                                |
+| `file_watcher`        | Tail log/text files                                                                                                   |
+| `gitea`               | Browse repos, trees, and files, and file issues (Note: This is disabled by default and can be enabled in `.env`)      |
+| `planka_get_overview` | Kanban board overview                                                                                                 |
+| `mealie`              | Recipe and meal plan data                                                                                             |
+| `tailscale`           | Network status and peer info                                                                                          |
+| `speedtest`           | Run a live speedtest                                                                                                  |
+| `Uptime_Kuma`         | Service uptime and response times                                                                                     |
+| `system_processes`    | System processes (full `ps aux` dump)                                                                                 |
+| `journalctl_check`    | JournalCTL-checker. Checks system logs                                                                                |
+| `FreshRSS`            | FreshRSS feed                                                                                                         |
+| `OpenFoodfacts`       | Fetch food-related data                                                                                               |
+| `Wikipedia`           | Fetch data directly from Wikipedia (With language option for articles that only exists in one (or limited) languages) |
+| `Wiktionary`          | Fetch etymology, definition, and other data about a word                                                              |
 
 ---
 
