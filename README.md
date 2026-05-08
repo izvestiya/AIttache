@@ -132,6 +132,7 @@ Grant the eyes. Keep the hands.
 | `Exchange_Rate`       | Fetch exchange rates from Frankfurter.dev                                                                             |
 | `Open-Meteo`          | Weather forecast                                                                                                      |
 | `IP_Geolocation`      | IP-API.com lookup                                                                                                     |
+| `Unshorten`           | URL-shortener. Resolves hidden shortened URLs                                                                         |
 
 ---
 
