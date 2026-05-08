@@ -130,6 +130,7 @@ Grant the eyes. Keep the hands.
 | `Wikipedia`           | Fetch data directly from Wikipedia (With language option for articles that only exists in one (or limited) languages) |
 | `Wiktionary`          | Fetch etymology, definition, and other data about a word                                                              |
 | `Exchange_Rate`       | Fetch exchange rates from Frankfurter.dev                                                                             |
+| `Open-Meteo`          | Weather forecast                                                                                                      |
 
 ---
 
