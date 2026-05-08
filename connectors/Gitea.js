@@ -23,6 +23,8 @@ const handler = async ({ action, owner, repo, path, issueTitle, issueContent }) 
         case "create_issue":
             if (!owner || !repo || !issueTitle || !issueContent) {
                 return utilities.sendify({ error: "owner, repo, issueTitle, and issueContent are required for create_issue action" });
+            } else if (process.env.GITEA_ALLOW_ISSUE_CREATION !== "true") {
+                return utilities.sendify({ error: "Issue creation is disabled by the administrator" });
             }
             url = `${base}/api/v1/repos/${owner}/${repo}/issues`;
             const body = {
