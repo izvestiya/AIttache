@@ -133,6 +133,7 @@ Grant the eyes. Keep the hands.
 | `Open-Meteo`          | Weather forecast                                                                                                      |
 | `IP_Geolocation`      | IP-API.com lookup                                                                                                     |
 | `Unshorten`           | URL-shortener. Resolves hidden shortened URLs                                                                         |
+| `Steam`               | Pull data directly from Steam (game info, your library, etc. )                                                        |
 
 ---
 
