@@ -27,8 +27,6 @@ const handler = async ({ action, query, barcode, page }) => {
     return utilities.sendify(data);
 };
 
-handler({ action: "search", query: "nutella", page: 2 });
-
 module.exports = {
     identifier: "openfoodfacts",
     handler,
