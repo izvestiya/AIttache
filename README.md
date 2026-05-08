@@ -2,7 +2,7 @@
 
 ## AI is like acetylene. Very useful for construction. Both blow up sideways if left unsupervised
 
-You know what's great about agentic AI? It can autonomously SSH into your server, confidently misread a log file, and rm -rf something important — all while you're making coffee.
+You know what's great about agentic AI? It can autonomously SSH into your server, confidently misread a log file, and rm -rf something important - all while you're making coffee.
 
 AIttache is not that.
 
@@ -126,6 +126,7 @@ Grant the eyes. Keep the hands.
 | `system_processes`    | System processes (full `ps aux` dump)                                                                            |
 | `journalctl_check`    | JournalCTL-checker. Checks system logs                                                                           |
 | `FreshRSS`            | FreshRSS feed                                                                                                    |
+| `OpenFoodfacts`       | Fetch food-related data                                                                                          |
 
 ---
 
