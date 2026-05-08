@@ -131,6 +131,7 @@ Grant the eyes. Keep the hands.
 | `Wiktionary`          | Fetch etymology, definition, and other data about a word                                                              |
 | `Exchange_Rate`       | Fetch exchange rates from Frankfurter.dev                                                                             |
 | `Open-Meteo`          | Weather forecast                                                                                                      |
+| `IP_Geolocation`      | IP-API.com lookup                                                                                                     |
 
 ---
 
