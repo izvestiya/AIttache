@@ -135,6 +135,7 @@ Grant the eyes. Keep the hands.
 | `Unshorten`           | URL-shortener. Resolves hidden shortened URLs                                                                         |
 | `Steam`               | Pull data directly from Steam (game info, your library, etc. )                                                        |
 | `Datamuse`            | Connector for synonyms, antonyms, rhymes, sounds_like, means_like, spelled_like, associated of a word                 |
+| `GitHub`              | Connector for GitHub. Same as Gitea but for GitHub.                                                                   |
 
 ---
 
