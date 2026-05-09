@@ -1,5 +1,6 @@
 const { z } = require("zod");
 const utilities = require("../utilities");
+require("dotenv").config({ path: `${__dirname}/.env`, quiet: true });
 
 const headers = { "User-Agent": "AIttache/1.0" };
 

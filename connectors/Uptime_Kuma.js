@@ -1,5 +1,6 @@
 const { z } = require("zod");
 const utilities = require("../utilities");
+require("dotenv").config({ path: `${__dirname}/.env`, quiet: true });
 
 const baseURL = process.env.UPTIME_KUMA_ROOT || "http://localhost:3001";
 const token = process.env.UPTIME_KUMA_TOKEN || "your_token_here";

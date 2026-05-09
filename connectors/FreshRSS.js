@@ -1,5 +1,6 @@
 const { z } = require("zod");
 const utilities = require("../utilities");
+require("dotenv").config({ path: `${__dirname}/.env`, quiet: true });
 
 const baseURL = process.env.FRESHRSS_ROOT || "http://localhost";
 const username = process.env.FRESHRSS_USER || "your_username";

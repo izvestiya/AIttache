@@ -1,6 +1,7 @@
 const { z } = require("zod");
 const { execSync } = require("child_process");
 const utilities = require("../utilities");
+require("dotenv").config({ path: `${__dirname}/.env`, quiet: true });
 
 const handler = async ({ host }) => {
     const output = host 

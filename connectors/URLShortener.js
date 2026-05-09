@@ -1,5 +1,6 @@
 const { z } = require("zod");
 const utilities = require("../utilities");
+require("dotenv").config({ path: `${__dirname}/.env`, quiet: true });
 
 const handler = async ({ url }) => {
     if (!url) return utilities.sendify({ error: "url is required" });
