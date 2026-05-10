@@ -140,6 +140,7 @@ Grant the eyes. Keep the hands.
 | `AIttache_Release_Notes` | Fetch the release notes for AIttache                                                                                  |
 | `Random_Nonsense`        | Get random useless fact, Chuck Norris joke, or a Dad joke (I do not recommend)                                        |
 | `Generate_Identity`      | Pull randomly generated identities from FakeNameGenerator.com (because, why not?)                                     |
+| `Cocktails`              | Search, get recipes, and random entries from TheCocktailDB                                                            |
 
 ---
 
