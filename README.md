@@ -138,6 +138,7 @@ Grant the eyes. Keep the hands.
 | `GitHub`                 | Connector for GitHub. Same as Gitea but for GitHub.                                                                   |
 | `OpenTriviaDB`           | Lets you pull random trivia                                                                                           |
 | `AIttache_Release_Notes` | Fetch the release notes for AIttache                                                                                  |
+| `Useless_Fact`           | Get random useless fact                                                                                               |
 
 ---
 
