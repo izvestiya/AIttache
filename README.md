@@ -139,6 +139,7 @@ Grant the eyes. Keep the hands.
 | `OpenTriviaDB`           | Lets you pull random trivia                                                                                           |
 | `AIttache_Release_Notes` | Fetch the release notes for AIttache                                                                                  |
 | `Random_Nonsense`        | Get random useless fact, Chuck Norris joke, or a Dad joke (I do not recommend)                                        |
+| `Generate_Identity`      | Pull randomly generated identities from FakeNameGenerator.com (because, why not?)                                     |
 
 ---
 
