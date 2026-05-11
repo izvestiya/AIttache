@@ -1,7 +1,7 @@
 const { z } = require("zod");
 const utilities = require("../utilities");
 
-const handler = async ({ source, animal }) => {
+const handler = async ({ source, animal, category }) => {
     switch (source) {
         case "dadjoke": {
             const res = await fetch("https://icanhazdadjoke.com/", {
@@ -55,6 +55,15 @@ const handler = async ({ source, animal }) => {
             const data = await res.json();
             return utilities.sendify({ source: "insult", insult: data.insult });
         }
+        case "joke": {
+            const cat = category ?? "Any";
+            const res = await fetch(`https://v2.jokeapi.dev/joke/${cat}?safe-mode`);
+            const data = await res.json();
+            if (data.type === "single") {
+                return utilities.sendify({ source: "joke", category: data.category, joke: data.joke });
+            }
+            return utilities.sendify({ source: "joke", category: data.category, setup: data.setup, delivery: data.delivery });
+        }
         case "uselessfact":
         default: {
             const res = await fetch("https://uselessfacts.jsph.pl/api/v2/facts/random", {
@@ -70,7 +79,8 @@ module.exports = {
     identifier: "Random_Nonsense",
     handler,
     params: {
-        source: z.enum(["uselessfact", "dadjoke", "chucknorris", "animalfact", "quote", "onthisday", "inspirobot", "programmingjoke", "insult"]).optional().describe("Source of nonsense (default: uselessfact)"),
-        animal: z.enum(["cat", "dog"]).optional().describe("Animal for fact. Only used with 'animalfact' source (default: cat)")
+        source: z.enum(["uselessfact", "dadjoke", "chucknorris", "animalfact", "quote", "onthisday", "inspirobot", "programmingjoke", "insult", "joke", "compliment"]).optional().describe("Source of nonsense (default: uselessfact)"),
+        animal: z.enum(["cat", "dog"]).optional().describe("Animal for fact. Only used with 'animalfact' source (default: cat)"),
+        category: z.enum(["Any", "Programming", "Misc", "Dark", "Pun", "Spooky", "Christmas"]).optional().describe("Joke category. Only used with 'joke' source (default: Any). Safe mode is on, so explicit content is filtered out regardless.")
     }
 };
