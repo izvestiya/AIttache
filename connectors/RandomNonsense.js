@@ -40,6 +40,21 @@ const handler = async ({ source, animal }) => {
             const pick = events[Math.floor(Math.random() * events.length)];
             return utilities.sendify({ source: "onthisday", date: `${month}/${day}`, year: pick?.year, event: pick?.text });
         }
+        case "inspirobot": {
+            const res = await fetch("https://inspirobot.me/api?generate=true");
+            const url = await res.text();
+            return utilities.sendify({ source: "inspirobot", image_url: url });
+        }
+        case "programmingjoke": {
+            const res = await fetch("https://official-joke-api.appspot.com/jokes/programming/random");
+            const data = await res.json();
+            return utilities.sendify({ source: "programmingjoke", setup: data[0].setup, punchline: data[0].punchline });
+        }
+        case "insult": {
+            const res = await fetch("https://evilinsult.com/generate_insult.php?lang=en&type=json");
+            const data = await res.json();
+            return utilities.sendify({ source: "insult", insult: data.insult });
+        }
         case "uselessfact":
         default: {
             const res = await fetch("https://uselessfacts.jsph.pl/api/v2/facts/random", {
@@ -55,7 +70,7 @@ module.exports = {
     identifier: "Random_Nonsense",
     handler,
     params: {
-        source: z.enum(["uselessfact", "dadjoke", "chucknorris", "animalfact", "quote", "onthisday"]).optional().describe("Source of nonsense (default: uselessfact)"),
+        source: z.enum(["uselessfact", "dadjoke", "chucknorris", "animalfact", "quote", "onthisday", "inspirobot", "programmingjoke", "insult"]).optional().describe("Source of nonsense (default: uselessfact)"),
         animal: z.enum(["cat", "dog"]).optional().describe("Animal for fact. Only used with 'animalfact' source (default: cat)")
     }
 };
