@@ -38,7 +38,7 @@ It's particularly good for:
 What it does not improve on:
 
 - The lack of the ability to follow an instruction with more than 2 constraints and 1 goal (it'll be wrong, but informed)
-- Makeing vibe-coding viable
+- Making vibe-coding viable
 - un-`rm -rf /` your server after the OpenClaw experiment
 
 ---
@@ -66,7 +66,7 @@ npm start
 
 See `.env.example` for all available options. At minimum you'll need the following if using HTTP-mode:
 
-```
+```bash
 MCP_PUBLIC_URL=https://mcp.yourdomain.com
 MCP_CLIENT_ID=your_client_id
 MCP_CLIENT_SECRET=your_client_secret
@@ -130,7 +130,7 @@ Grant the eyes. Keep the hands.
 | `Wikipedia`              | Fetch data directly from Wikipedia (With language option for articles that only exists in one (or limited) languages)                                                                                                                                                                                       |
 | `Wiktionary`             | Fetch etymology, definition, and other data about a word                                                                                                                                                                                                                                                    |
 | `Exchange_Rate`          | Fetch exchange rates from Frankfurter.dev                                                                                                                                                                                                                                                                   |
-| `Open-Meteo`             | Weather forecast                                                                                                                                                                                                                                                                                            |
+| `Weather`                | Weather forecast pulled from Open Meteo, and has the features: current, forecast, air_quality, and sun                                                                                                                                                                                                      |
 | `IP_Geolocation`         | IP-API.com lookup                                                                                                                                                                                                                                                                                           |
 | `Unshorten`              | URL-shortener. Resolves hidden shortened URLs                                                                                                                                                                                                                                                               |
 | `Steam`                  | Pull data directly from Steam (game info, your library, etc. )                                                                                                                                                                                                                                              |

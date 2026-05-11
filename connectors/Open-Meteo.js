@@ -3,6 +3,7 @@ const utilities = require("../utilities");
 require("dotenv").config({ path: `${__dirname}/.env`, quiet: true });
 
 const base = "https://api.open-meteo.com/v1";
+const aqBase = "https://air-quality-api.open-meteo.com/v1";
 
 const handler = async ({ action, latitude, longitude, location }) => {
     if (location && (!latitude || !longitude)) {
@@ -28,16 +29,28 @@ const handler = async ({ action, latitude, longitude, location }) => {
             const data = await res.json();
             return utilities.sendify(data);
         }
+        case "air_quality": {
+            const url = `${aqBase}/air-quality?latitude=${latitude}&longitude=${longitude}&current=european_aqi,us_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone&timezone=auto`;
+            const res = await fetch(url);
+            const data = await res.json();
+            return utilities.sendify(data);
+        }
+        case "sun": {
+            const url = `${base}/forecast?latitude=${latitude}&longitude=${longitude}&daily=sunrise,sunset,daylight_duration&timezone=auto&forecast_days=1`;
+            const res = await fetch(url);
+            const data = await res.json();
+            return utilities.sendify(data);
+        }
         default:
             return utilities.sendify({ error: "Invalid action" });
     }
 };
 
 module.exports = {
-    identifier: "weather",
+    identifier: "Weather",
     handler,
     params: {
-        action: z.enum(["current", "forecast"]).describe("Get current weather conditions or 7-day daily forecast"),
+        action: z.enum(["current", "forecast", "air_quality", "sun"]).describe("current weather, 7-day forecast, air quality, or sunrise/sunset for today"),
         latitude: z.number().optional().describe("Latitude coordinate. Not needed if location is provided"),
         longitude: z.number().optional().describe("Longitude coordinate. Not needed if location is provided"),
         location: z.string().optional().describe("City or place name, e.g. 'Los Angeles' or 'Tokyo'. Used to auto-resolve coordinates")
