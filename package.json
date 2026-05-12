@@ -1,7 +1,7 @@
 {
   "name": "aittache",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Give your LLM eyes, not hands. An MCP server for people who don't want a golden retriever with sudo",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
