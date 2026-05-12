@@ -26,7 +26,7 @@ const authMiddleware = (req, res, next) => {
 
 // OAuth metadata discovery
 const protectedResourceDiscovery = (req, res) => {
-    console.error("Protected resource discovery hit");
+    // console.error("Protected resource discovery hit");
     const base = process.env.MCP_PUBLIC_URL;
     res.json({
         resource: base,
@@ -52,15 +52,16 @@ const authorizationServerDiscovery = (req, res) => {
 
 const authorize = (req, res) => {
     const { client_id, redirect_uri, state, code_challenge, code_challenge_method } = req.query;
-        console.error("Authorize request client_id:", req.query.client_id);
-        console.error("Expected client_id:", process.env.MCP_CLIENT_ID);
-    if (client_id !== process.env.MCP_CLIENT_ID) {
+        // console.error("Authorize request client_id:", req.query.client_id);
+        // console.error("Expected client_id:", process.env.MCP_CLIENT_ID);
+        const cleanClientId = client_id.replace(/\s+/g, "");
+    if (cleanClientId !== process.env.MCP_CLIENT_ID) {
         return res.status(403).json({ error: "invalid_client" });
     }
     // Auto-approve — generate code immediately, no login page
     const code = crypto.randomBytes(32).toString("hex");
-    authCodes[code] = {
-        clientId: client_id,
+        authCodes[code] = {
+        clientId: cleanClientId,  // store the cleaned version
         redirectUri: redirect_uri,
         codeChallenge: code_challenge,
         codeChallengeMethod: code_challenge_method,
@@ -75,8 +76,16 @@ const authorize = (req, res) => {
 
 // Token endpoint
 const token = (req, res, next) => {
+    // console.error("Token body:", req.body);
+    // console.error("Token content-type:", req.headers["content-type"]);
     if (req.body.grant_type === "authorization_code") {
-        const { code, redirect_uri, client_id, code_verifier } = req.body;
+        const client_id = (req.body.client_id || "").replace(/\s+/g, "");
+        const client_secret = (req.body.client_secret || "").replace(/\s+/g, "");
+        const { code, redirect_uri, code_verifier } = req.body;
+        // mutate the body so app.oauth.token() also sees the clean versions
+        req.body.client_id = client_id;
+        req.body.client_secret = client_secret;
+
         const ac = authCodes[code];
         if (!ac || ac.expires < Date.now() || ac.clientId !== client_id || ac.redirectUri !== redirect_uri) {
             return res.status(400).json({ error: "invalid_grant" });
@@ -147,9 +156,11 @@ const load = (app) => {
         app.oauth = new OAuthServer({
         model: {
             getClient: async (clientId, clientSecret) => {
-                if (clientId === process.env.MCP_CLIENT_ID) {
-                    if (clientSecret && clientSecret !== process.env.MCP_CLIENT_SECRET) return null;
-                    return { id: clientId, grants: ["client_credentials", "authorization_code"], redirectUris: [] };
+                const cleanId = (clientId || "").replace(/\s+/g, "");
+                const cleanSecret = (clientSecret || "").replace(/\s+/g, "");
+                if (cleanId === process.env.MCP_CLIENT_ID) {
+                    if (cleanSecret && cleanSecret !== process.env.MCP_CLIENT_SECRET) return null;
+                    return { id: cleanId, grants: ["client_credentials", "authorization_code"], redirectUris: [] };
                 }
                 return null;
             },
