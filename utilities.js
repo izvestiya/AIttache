@@ -33,9 +33,25 @@ const createMcpServer = () => {
     return s;
 }
 
+const loadData = (connectorName) => {
+    const dataPath = path.join(__dirname, "data", `${connectorName}.json`);
+    if (fs.existsSync(dataPath)) {
+        return JSON.parse(fs.readFileSync(dataPath, "utf-8"));
+    } else {
+        return null;
+    }
+}
+
+const saveData = (connectorName, data) => {
+    const dataPath = path.join(__dirname, "data", `${connectorName}.json`);
+    fs.writeFileSync(dataPath, JSON.stringify(data, null, 2), "utf-8");
+}
+
 module.exports = {
     sendify,
     createMcpServer,
     loadConnectors,
-    connectorsDir
+    connectorsDir,
+    loadData,
+    saveData
 }
