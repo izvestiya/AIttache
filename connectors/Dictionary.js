@@ -59,7 +59,7 @@ const handler = async ({ action, entryType, query, word, definition, origin, par
             data[word] = {
                 type: entryType,
                 definition: definition,
-                partOfSpeech: (entryType === "word") ? partOfSpeech : ["none"],
+                partOfSpeech: partOfSpeech || ["none"],
                 lang: lang?.toLowerCase() || "en",
                 origin: origin || "unknown",
                 formal: formal || false
@@ -83,7 +83,7 @@ module.exports = {
         word: z.string().optional().describe("Word to fetch definition for or add to the dictionary (required for 'word' and 'add' actions). Note: adding a word that already exists will overwrite the existing entry. This field is also used as the unique identifier for all entry types."),
         definition: z.string().optional().describe("Definition of the word to add to the dictionary (required for 'add' action)"),
         origin: z.string().optional().describe("Origin of the word to add to the dictionary (optional for 'add' action)"),
-        partOfSpeech: z.array(z.enum(["noun", "verb", "adjective", "adverb", "pronoun", "preposition", "conjunction", "interjection", "article"])).optional().describe("Array of parts of speech to filter search results by (e.g. ['verb', 'noun'])"),
+        partOfSpeech: z.array(z.enum(["noun", "verb", "adjective", "adverb", "pronoun", "preposition", "conjunction", "interjection", "article", "numeral", "not applicable"])).optional().describe("Array of parts of speech to filter search results by (e.g. ['verb', 'noun'])"),
         formal: z.boolean().optional().describe("Whether to return formal definitions (true) or informal definitions (false) for the 'add' action"),
         lang: z.string().optional().describe("Language of the word (e.g. 'en', 'de', etc.) defaults to 'en'")
     }
