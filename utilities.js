@@ -4,6 +4,11 @@ const fs = require("fs");
 const logging = require("./logging");
 
 const connectorsDir = path.join(__dirname, "connectors");
+const dataDir = path.join(__dirname, "data");
+
+if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir);
+}
 
 const sendify = (data) => {
     return { content: [{ type: "text", text: JSON.stringify(data) }] };
@@ -34,7 +39,7 @@ const createMcpServer = () => {
 }
 
 const loadData = (connectorName) => {
-    const dataPath = path.join(__dirname, "data", `${connectorName}.json`);
+    const dataPath = path.join(dataDir, `${connectorName}.json`);
     if (fs.existsSync(dataPath)) {
         return JSON.parse(fs.readFileSync(dataPath, "utf-8"));
     } else {
@@ -43,7 +48,7 @@ const loadData = (connectorName) => {
 }
 
 const saveData = (connectorName, data) => {
-    const dataPath = path.join(__dirname, "data", `${connectorName}.json`);
+    const dataPath = path.join(dataDir, `${connectorName}.json`);
     fs.writeFileSync(dataPath, JSON.stringify(data, null, 2), "utf-8");
 }
 
@@ -52,6 +57,7 @@ module.exports = {
     createMcpServer,
     loadConnectors,
     connectorsDir,
+    dataDir,
     loadData,
     saveData
 }
