@@ -52,6 +52,6 @@ module.exports = {
     params: {
         entries: z.number().int().optional().describe("Number of release notes entries to return (default: 4), set to 0 for all)"),
         offset: z.number().int().optional().describe("Number of entries to skip from the start (default: 0)"),
-        reverse: z.boolean().optional().describe("Whether to return entries in reverse chronological order (default: false), is applied before offset and entries"),
+        reverse: z.boolean().optional().describe("Whether to return entries in reverse chronological order (default: false), is applied before offset and entries. Standard (when set to false) is newest to oldest"),
     } // Params for the endpoint
 }
