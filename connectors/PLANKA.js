@@ -57,7 +57,7 @@ const handler = async ({boardID}) => {
 };
 
 module.exports = {
-    identifier: "planka_get_overview",
+    identifier: "Planka",
     handler,
     params: {
         boardID: z.string().optional().describe("The Planka board ID. Leave blank to get a total list of boards")

@@ -32,7 +32,7 @@ const handler = async ({ action }) => {
 };
 
 module.exports = {
-    identifier: "tailscale",
+    identifier: "Tailscale",
     handler,
     params: {
         action: z.enum(["status", "peers", "ip", "dns"]).describe("What to fetch: full status, peer list, local IP, or DNS config")

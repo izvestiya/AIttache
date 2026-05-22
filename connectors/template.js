@@ -10,7 +10,7 @@ const handler = async () => {
 };
 
 module.exports = {
-    identifier: "Name_goes_here",
+    identifier: "Name_Goes_Here",
     handler,
     params: {} // Params for the endpoint
 }

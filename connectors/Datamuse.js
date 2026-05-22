@@ -40,7 +40,7 @@ const handler = async ({ action, word, max }) => {
 };
 
 module.exports = {
-    identifier: "datamuse",
+    identifier: "Datamuse",
     handler,
     params: {
         action: z.enum(["synonyms", "antonyms", "rhymes", "sounds_like", "means_like", "spelled_like", "associated"]).describe("Type of word relationship to query"),

@@ -40,7 +40,7 @@ const handler = async ({ action, query, lang }) => {
 };
 
 module.exports = {
-    identifier: "wikipedia",
+    identifier: "Wikipedia",
     handler,
     params: {
         action: z.enum(["search", "summary", "full"]).describe("Search for articles, get intro summary, or get full article text"),

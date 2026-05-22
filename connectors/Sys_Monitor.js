@@ -86,7 +86,7 @@ const handler = async ({ action, host }) => {
 };
 
 module.exports = {
-    identifier: "system_monitor",
+    identifier: "System_Monitor",
     handler,
     params: {
         action: z.enum(["overview", "cpu", "memory", "disk", "network", "processes", "docker", "gpu"]).describe("What to check"),

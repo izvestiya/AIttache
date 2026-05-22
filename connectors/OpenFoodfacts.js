@@ -29,7 +29,7 @@ const handler = async ({ action, query, barcode, page }) => {
 };
 
 module.exports = {
-    identifier: "openfoodfacts",
+    identifier: "OpenFoodFacts",
     handler,
     params: {
         action: z.enum(["search", "barcode"]).describe("Search by text query or look up by barcode"),

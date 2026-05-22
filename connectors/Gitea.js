@@ -54,7 +54,7 @@ const handler = async ({ action, owner, repo, path, issueTitle, issueContent }) 
 };
 
 module.exports = {
-    identifier: "gitea",
+    identifier: "Gitea",
     handler,
     params: {
         action: z.enum(["repos", "repo", "issues", "file", "tree", "create_issue"]).describe("What to fetch: list repos, single repo details, issues, or file contents. create_issue creates an issue on the user's behalf"),

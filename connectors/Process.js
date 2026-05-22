@@ -11,7 +11,7 @@ const handler = async ({ host }) => {
 };
 
 module.exports = {
-    identifier: "system_processes",
+    identifier: "System_Processes",
     handler,
     params: {
         host: z.string().optional().describe("SSH host to run on (e.g. user@hostname or a ~/.ssh/config alias). Leave blank for local machine"),

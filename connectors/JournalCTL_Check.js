@@ -17,7 +17,7 @@ const handler = async ({ lines, process }) => {
 };
 
 module.exports = {
-    identifier: "JournalCTL_Check",
+    identifier: "JournalCTL",
     handler,
     params: {
         lines: z.number().int().optional().describe("How many lines to return, default 150"),

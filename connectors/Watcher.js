@@ -30,7 +30,7 @@ const handler = async ({ name, lines, host }) => {
 };
 
 module.exports = {
-    identifier: "file_watcher",
+    identifier: "File_Watcher",
     handler,
     params: {
         name: z.string().optional().describe("Watcher name (e.g. 'minecraft_logs'). Leave blank to list available watchers"),

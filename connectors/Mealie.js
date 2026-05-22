@@ -36,7 +36,7 @@ const handler = async ({ action, query, recipeId }) => {
 };
 
 module.exports = {
-    identifier: "mealie",
+    identifier: "Mealie",
     handler,
     params: {
         action: z.enum(["recipes", "recipe", "search", "mealplan", "shopping"]).describe("What to fetch: list recipes, single recipe, search, today's meal plan, or shopping lists"),

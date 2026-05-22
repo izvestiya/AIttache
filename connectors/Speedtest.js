@@ -29,7 +29,7 @@ const handler = async ({ host }) => {
 };
 
 module.exports = {
-    identifier: "speedtest",
+    identifier: "Speedtest",
     handler,
     params: {
         host: z.string().optional().describe("SSH host to run on. Leave blank for local machine")

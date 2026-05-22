@@ -17,7 +17,7 @@ const handler = async ({ query, lang }) => {
 };
 
 module.exports = {
-    identifier: "wiktionary",
+    identifier: "Wiktionary",
     handler,
     params: {
         query: z.string().describe("Word or phrase to look up"),

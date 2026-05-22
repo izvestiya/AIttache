@@ -29,7 +29,7 @@ const handler = async ({ pane }) => {
 };
 
 module.exports = {
-    identifier: "terminal_view",
+    identifier: "Terminal",
     handler,
     params: {
         pane: z.string().optional().describe("Specific tmux pane ID. Leave blank to capture all windows starting with 'mcp-'")
