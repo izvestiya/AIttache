@@ -52,6 +52,13 @@ const saveData = (connectorName, data) => {
     fs.writeFileSync(dataPath, JSON.stringify(data, null, 2), "utf-8");
 }
 
+const getRandomItem = (arr) => {
+    if (!Array.isArray(arr) || arr.length === 0) {
+        return null;
+    }
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
 module.exports = {
     sendify,
     createMcpServer,
@@ -59,5 +66,6 @@ module.exports = {
     connectorsDir,
     dataDir,
     loadData,
-    saveData
+    saveData,
+    getRandomItem
 }
